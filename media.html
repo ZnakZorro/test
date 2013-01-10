@@ -9,7 +9,7 @@
 function getPhoneGapPath() {
     var path = window.location.pathname;
 	document.getElementById('test').innerText='path='+path;
-    path = path.substr( path, path.length - 10 );
+    path = path.substr( path, path.length - 10 )+'media/';
 	document.getElementById('test1').innerText='path='+path;
     //return 'file://' + path;
 	return path;
@@ -33,6 +33,16 @@ function getPhoneGapPath() {
 
         // Play audio
         //
+        function graj(src) {
+			src=getPhoneGapPath()+src;
+			document.getElementById('test2').innerText='src='+src;
+            if (my_media == null) {
+                my_media = new Media(src, onSuccess, onError);
+            } 
+            my_media.play();
+		}
+
+
         function playAudio(src) {
 			src=getPhoneGapPath()+src;
 			document.getElementById('test2').innerText='src='+src;
@@ -104,10 +114,15 @@ function getPhoneGapPath() {
         </script>
       </head>
       <body>
-        <a href="#" class="btn large" onclick="playAudio('rockGuitar.mp3');">Play Audio</a>
+        <a href="#" class="btn large" onclick="graj('page1.mp3');">Page1</a>
+		<a href="#" class="btn large" onclick="graj('page2.mp3');">Page2</a>
+		<hr>
+		
+		<a href="#" class="btn large" onclick="playAudio('rockGuitar.mp3');">Play Audio</a>
         <a href="#" class="btn large" onclick="pauseAudio();">Pause Playing Audio</a>
         <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
         <p id="audio_position"></p>
+		
         <div id="test"></div>
         <div id="test1"></div>
         <div id="test2"></div>
