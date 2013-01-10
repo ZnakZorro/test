@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>canvs slide fasde</title>
+<style>
+body{
+  margin:0
+  padding:0;
+  background:#eee;
+	overflow:hidden;
+}
+
+#main{
+	position:absolute;
+	left:0px;
+	top:0;
+	width:100%;
+	height:100%;
+	background-attachment: fixed;  
+	background-position:50% 40%;
+	background-size:cover;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s;
+  -ms-transition: all 1s;
+}
+
+.dot{
+  height:100%;
+	/*background:url('dot.png');*/
+	
+}
+#content{
+	position:absolute;
+	padding-bottom:150px;
+	margin:auto;
+	width:100%;
+	height:100%;
+	background:#333;
+	
+	
+}
+#content p{
+  position:absolute;
+  height:50px;
+	width:100%;
+	top:-16px;
+	z-index:+3000;
+  background:#000;
+	opacity:0.5;
+  color:#fff;
+
+}
+#select{
+	height:auto;
+	background:#fff;
+	margin:0;
+	padding:0;
+	
+	
+	
+}
+#select ul{
+	/*margin:50px auto;*/
+	/*width:970px;*/
+	background:#fff;
+margin-bottom:0;
+	
+	
+	
+	
+	
+}
+
+input[type='radio'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ccc;
+	background-size:auto 160px;
+	background-position: 50% 50%;
+  width: 160px;
+	height: 90px; 
+	cursor: pointer;
+  position: relative;
+  float: left;
+	margin-top:1%;
+	z-index:+2000;
+	-webkit-filter:grayscale(80%);
+	opacity:0.6;
+	box-shadow:0 0 10px #000;
+  -webkit-transition: all 1s ease;
+-moz-transition: all 1s ease;
+-o-transition: all 1s;
+-ms-transition: all 1s; 
+}
+
+input[type='radio']:checked {
+  content: '';
+  border: none;
+  box-shadow: none;
+  -webkit-filter: grayscale(10%);
+	opacity:1;
+	box-shadow:0 0 20px #000;
+	-webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s;
+  -ms-transition: all 1s;
+}
+
+.slide1 {background: url('https://lh6.googleusercontent.com/-EyW299DPrxI/UNs6Czoz3NI/AAAAAAAACBE/JT4aI0Btu9k/s160/2012_Stawskie_jezioro-003.jpg');}
+.slide1:checked ~ #main {background-image:url('https://lh6.googleusercontent.com/-EyW299DPrxI/UNs6Czoz3NI/AAAAAAAACBE/JT4aI0Btu9k/s912/2012_Stawskie_jezioro-003.jpg');}
+
+.slide2 {background: url('https://lh5.googleusercontent.com/-9W3xx4vN4Zw/UNs6BPLV5NI/AAAAAAAACA4/zMmsxt8OlPs/s160/2012_Stawskie_jezioro-001.jpg');}
+.slide2:checked ~ #main {background-image:url('https://lh5.googleusercontent.com/-9W3xx4vN4Zw/UNs6BPLV5NI/AAAAAAAACA4/zMmsxt8OlPs/s912/2012_Stawskie_jezioro-001.jpg');}
+
+.slide3 {background: url('https://lh3.googleusercontent.com/-2rpxVezqZQw/UNs6Fte983I/AAAAAAAACBc/GOZ_dxtTg0Q/s160/2012_Stawskie_jezioro-006.jpg');}
+.slide3:checked ~ #main {background-image:url('https://lh3.googleusercontent.com/-2rpxVezqZQw/UNs6Fte983I/AAAAAAAACBc/GOZ_dxtTg0Q/s912/2012_Stawskie_jezioro-006.jpg');}
+
+.slide4 {background: url('https://lh6.googleusercontent.com/-NxzP1Oj2puw/UNs6HrtY_yI/AAAAAAAACBs/zitPDrH_UHI/s160/2012_Stawskie_jezioro-008.jpg');}
+.slide4:checked ~ #main {background-image:url('https://lh6.googleusercontent.com/-NxzP1Oj2puw/UNs6HrtY_yI/AAAAAAAACBs/zitPDrH_UHI/s912/2012_Stawskie_jezioro-008.jpg');}
+
+
+	
+</style>
+</head>
+<body>
+<div id="content">
+	<div id="select">	
+		<ul>
+			<input class='slide1' name='thumbnail' type='radio'  checked='' />
+			<input class='slide2' name='thumbnail' type='radio' />
+			<input class='slide3' name='thumbnail' type='radio' />
+			<input class='slide4' name='thumbnail' type='radio' />
+				<div id="main"> 
+					<div class="dot"></div>
+				</div>
+		</ul>
+	</div>
+</div>
+</body>		
