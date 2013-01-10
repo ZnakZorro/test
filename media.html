@@ -3,9 +3,18 @@
     <html>
       <head>
         <title>Media Example</title>
-
-        <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+ 	<link rel="stylesheet" href="css/bootstrap.mi.css">
+        <script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
         <script type="text/javascript" charset="utf-8">
+function getPhoneGapPath() {
+    var path = window.location.pathname;
+	document.getElementById('test').innerText='path='+path;
+    path = path.substr( path, path.length - 10 );
+	document.getElementById('test1').innerText='path='+path;
+    //return 'file://' + path;
+	return path;
+};
+
 
         // Wait for Cordova to load
         //
@@ -14,7 +23,7 @@
         // Cordova is ready
         //
         function onDeviceReady() {
-            playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3");
+            playAudio("rockGuitar.mp3");
         }
 
         // Audio player
@@ -25,6 +34,8 @@
         // Play audio
         //
         function playAudio(src) {
+			src=getPhoneGapPath()+src;
+			document.getElementById('test2').innerText='src='+src;
             if (my_media == null) {
                 // Create Media object from src
                 my_media = new Media(src, onSuccess, onError);
@@ -97,5 +108,11 @@
         <a href="#" class="btn large" onclick="pauseAudio();">Pause Playing Audio</a>
         <a href="#" class="btn large" onclick="stopAudio();">Stop Playing Audio</a>
         <p id="audio_position"></p>
+        <div id="test"></div>
+        <div id="test1"></div>
+        <div id="test2"></div>
+        <div id="test3"></div>
+        <div id="test4"></div>
+        <div id="test5"></div>
       </body>
     </html>
