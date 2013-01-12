@@ -1,0 +1,62 @@
+<html lang=pl> 
+<head> 
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<meta charset=UTF-8> 
+	<title>Kapiszon</title> 
+	<meta http-equiv="Content-Language" content="pl"/> 
+	<meta name="description" content="rwd">
+	<meta name="content" content="rwd">
+	<meta name="author" content="zs">
+	<script type="text/javascript" charset="utf-8" src="kapiszon.js"></script>
+	<style> 
+	</style>
+	<!--[if IE]>
+		<link href=ie.css rel=stylesheet />
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+	
+	
+<script type="text/javascript">
+
+	function onLoad() {
+		var o=$('#test');//.innerHTML='html';
+		console.log(o);
+		var o=$('.nn');
+		console.log(o);
+		
+		var p=$('p');
+		var j=p.length;
+		
+		console.log("\n"+'1 loop--------------------');
+		for (var i=0; i<j; i++){
+			console.log(p[i]);
+		}
+		
+		console.log("\n"+'2 loop--------------------');
+		for (var i in p){
+			console.log(p[i]);
+			}
+		$('#test').style.color='red';
+		
+		
+	}
+
+
+
+
+	
+	
+</script>	
+
+</head> 
+
+<body onload="onLoad()">
+
+<div id="test"><p class="nn">testowy wpis</p></div>
+<div id="test1"><p>testowy wpis 1</p></div>
+<div id="test2"><p class="nn">testowy wpis 2</p></div>
+
+</body>
+</html>

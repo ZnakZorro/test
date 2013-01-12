@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>test position elem</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 	<link rel="stylesheet" href="css/bootstrap.mi.css">
+<style>	
+#test {background:#ffe; position:fixed; top:10px; right:3px; border:1px silver solid; padding:4px;}
+</style>
+
+<script>
+var $=function kapiszon(id) {
+	var prefix=id[0];
+	var iid=id.slice(1,id.length);
+
+	switch (prefix){
+		case '#':	return document.getElementById(iid);   			break;
+		case '.':	return document.getElementsByClassName(iid);  	break;
+		default:	return document.getElementsByTagName(id); 
+		}
+		
+	}
+	
+function onLoad(){	
+	window.onscroll = function (oEvent) {
+	  // called when the window is scrolled.
+	  var nVScroll = document.documentElement.scrollTop || document.body.scrollTop;
+	  var nVScroll1 = document.documentElement.scrollTop;
+	  var nVScroll2 = document.body.scrollTop;
+	  var ekran=screen.width+' x '+screen.height+'<br>'+screen.availWidth+' x '+screen.availHeight;
+	  
+		$('#test').innerHTML='';
+		$('#test').innerHTML+='<p>ekran= '+ekran+'</p>';
+		$('#test').innerHTML+='<p>nVScroll1= '+nVScroll1+'<br />nVScroll2= '+nVScroll2+'</p>';
+		$('#test').innerHTML+='<p>pageYOffset= '+window.pageYOffset+'</p>';
+		$('#test').innerHTML+='<p>blok1= '+$('#blok1').style.width+'</p>';
+		$('#test').innerHTML+='<p>blok2= '+$('#blok2').style.width+'</p>';
+		
+		}
+}
+
+
+</script>
+</head>
+
+
+<body onLoad="onLoad()">
+
+<div id="test">00000000000000000000000000000</div>
+<div id="blok1" style="width:200px;"> 123 123 123 123 123 123 123 123 123 123 123 123 123</div>
+<div id="blok2"> 123 123 123 123 123 123 123 123 123 123 123 123 123</div>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+<p> 123</p>
+
+
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,44 @@
+<!--
+You are free to copy and use this sample in accordance with the terms of the
+Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Javascript API Samples</title>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id="content"></div>
+    <script type="text/javascript">
+    /*
+     * A technique for avoiding browsers' cross-domain restriction
+     * Allows you to request information cross-domain from client
+     * You request a script from a cross domain
+     * That service must respond in JSON wrapped in a function call you specify
+    */
+    
+    
+    function myFunc() {
+      if (typeof console != 'undefined') {
+	  var ile=arguments[0].responseData.cursor.estimatedResultCount;
+	  document.getElementById('content').innerHTML+=ile;
+        console.log(arguments);
+       console.log(arguments[0].responseData);
+		console.log(arguments[0].responseData.cursor.estimatedResultCount);
+		
+      } else {
+        alert('click debug button');
+      }
+    }
+    
+    
+    var script = document.createElement('script');
+    script.src = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=szczecin+przeziębienie&callback=myFunc&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=lang_pl&cr=countryPL&as_qdr=w&as_sitesearch=&as_occt=body';
+	//https://www.google.pl/search?hl=pl&as_q=przezi%C4%99bienie&as_epq=szczecin&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=lang_pl&cr=countryPL&as_qdr=w&as_sitesearch=&as_occt=body&safe=images&as_filetype=&as_rights=
+    script.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
+  </body>
+</html>
