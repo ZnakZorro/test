@@ -1,0 +1,130 @@
+<html lang=pl> 
+<head> 
+<meta charset=UTF-8> 
+<title>asyncJS</title> 
+<meta http-equiv="Content-Language" content="pl"/> 
+<style type="text/css"> 
+body{font:normal 0.85em Verdana; margin:0.25em; padding:0.25em;}
+a   {text-decoration:none;}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript">
+function toDate(date){
+	if  (!date) date=new Date();
+	var d = new Date(date);
+	var miesiac = d.getMonth()+1;  if (miesiac<10) miesiac = '0'+miesiac;
+	var dzien   = d.getDate();     if (dzien<10)   dzien   = '0'+dzien;
+	var godzina = d.getHours();    if (godzina<10) godzina = '0'+godzina;
+	var minuta  = d.getMinutes();  if (minuta<10)  minuta  = '0'+minuta;
+	var sekundy  = d.getSeconds();  if (sekundy<10)  sekundy  = '0'+sekundy;
+	var rok     = d.getFullYear();
+	var pldata=rok+'-'+dzien+'-'+miesiac+' <b>'+godzina+':'+minuta+':'+sekundy+'</b>';
+	return pldata;
+}		
+
+	$(document).ready(function() {
+			/***************************************************************
+			* Async For looper
+			* USAGE: asynchForeach(startIndex, array, miliseconds, callbackfunc);
+
+			****************************************************************/
+			var asynchForeach = function (i, arr, msec, callBack) {
+			  setTimeout(function () {
+				if (typeof (arr[i]) === "function") {
+				  arr[i].call();
+				}
+
+				//do iteration
+				if (i < arr.length - 1) {
+				  asynchForeach(i + 1, arr, msec, callBack);
+				  return;
+				} else if (typeof (callBack) === "function") {
+				  callBack();
+				}
+			  }, msec);
+			}
+
+
+
+
+
+			//Your list of functions list in an array obj
+			var myarray = [
+			
+			function () {
+			  $('#asynch').append(toDate()+" some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append(toDate()+" some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append(toDate()+"some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append(toDate()+"some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append(toDate()+"some data inserted!<br/>");
+			},,
+
+			function () {
+			  $('#asynch').append(toDate()+"some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},,
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			},
+
+			function () {
+			  $('#asynch').append("some data inserted!<br/>");
+			}];
+
+
+
+			//call asych looper
+			asynchForeach(0,myarray, 250, function(){
+			  //this is the function will be invoked after "myarray" has been complated
+			  $('#asynch').append("All data has been processed!<br/>");
+			});
+		
+		
+	});
+</script>
+	<!--[if IE]>
+		<link href=ie.css rel=stylesheet />
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+</head> 
+<body> 
+<div id="asynch"></div>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<html lang=pl> 
+<head> 
+<meta http-equiv="X-UA-Compatible" content="chrome=1"> 
+	<meta charset=UTF-8> 
+	<title>Demo_Html5_css3</title> 
+	<meta http-equiv="Content-Language" content="pl"/> 
+	<meta name="robots" content="all,index,follow"/> 
+	<meta name="keywords" content=""/> 
+	<meta name="description" content=""/> 
+	<meta name="publisher" content="ZnakZorro" /> 
+	<meta name="author" content="ZnakZorro" /> 
+	<meta name="date" content="2011-07-15" /> 
+ 
+	<!--link href=styles.css rel=stylesheet /--> 
+	<style type="text/css"> 
+		body,article,section,footer,header {
+			font:normal 0.85em Verdana; 
+			margin:0.25em; 
+			padding:0.25em;
+		}
+		a   {text-decoration:none;}
+.switch {
+display: block;
+width: 130px;
+height: 60px;
+margin: 70px auto;
+position: relative;
+background: #CED8DA;
+background: -moz-linear-gradient(left, #CED8DA 0%, #D8E0E3 29%, #CCD4D7 34%, #D4DCDF 62%, #FFF9F4 68%, #E1E9EC 74%, #B7BFC2 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#CED8DA), color-stop(29%,#D8E0E3), color-stop(34%,#CCD4D7), color-stop(62%,#D4DCDF), color-stop(68%,#FFF9F4), color-stop(74%,#E1E9EC), color-stop(100%,#B7BFC2));
+background: -webkit-linear-gradient(left, #CED8DA 0%,#D8E0E3 29%,#CCD4D7 34%,#D4DCDF 62%,#FFF9F4 68%,#E1E9EC 74%,#B7BFC2 100%);
+background: -o-linear-gradient(left, #CED8DA 0%,#D8E0E3 29%,#CCD4D7 34%,#D4DCDF 62%,#FFF9F4 68%,#E1E9EC 74%,#B7BFC2 100%);
+background: -ms-linear-gradient(left, #CED8DA 0%,#D8E0E3 29%,#CCD4D7 34%,#D4DCDF 62%,#FFF9F4 68%,#E1E9EC 74%,#B7BFC2 100%);
+background: linear-gradient(to right, #CED8DA 0%,#D8E0E3 29%,#CCD4D7 34%,#D4DCDF 62%,#FFF9F4 68%,#E1E9EC 74%,#B7BFC2 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ced8da', endColorstr='#b7bfc2',GradientType=1 );
+transition: all 0.2s ease-out;
+cursor: pointer;
+border-radius: 0.35em;
+box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 1px rgba(0, 0, 0, 0.3), 0 8px 10px rgba(0, 0, 0, 0.15);
+}	
+.switch::before {
+display: block;
+position: absolute;
+left: -35px;
+right: -35px;
+top: -25px;
+bottom: -25px;
+z-index: -2;
+content: "";
+border-radius: 0.4em;
+background: #D5DDE0;
+background: linear-gradient(#D7DFE2, #BCC7CD);
+box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 1px 1px rgba(0, 0, 0, 0.3), 0 0 8px 2px rgba(0, 0, 0, 0.2), 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+pointer-events: none;
+transition: all 0.2s ease-out;
+}
+
+.switch::after {
+content: "";
+position: absolute;
+right: -25px;
+top: 50%;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+background: #788B91;
+margin-top: -8px;
+z-index: -1;
+box-shadow: inset 0 -1px 8px rgba(0, 0, 0, 0.7), inset 0 -2px 2px rgba(0, 0, 0, 0.2), 0 1px 0 white, 0 -1px 0 rgba(0, 0, 0, 0.5), -47px 32px 15px 13px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.droid {
+  margin-top:100px;
+	margin-right:auto;
+	margin-left:auto;
+position: relative;
+border-radius: 50% 50% 15% 15% /34% 34% 10% 10%;
+font-size: 60px;
+height: 2em;
+width: 1.49em;
+background: -webkit-linear-gradient(top, transparent 30%,#a4ca37 30%, #a4ca37 34%,transparent 34%,transparent 37.415%,#a4ca37 37.415%), -webkit-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%),-webkit-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%);
+background: -moz-linear-gradient(top, transparent 30%,#a4ca37 30%, #a4ca37 34%,transparent 34%,transparent 37.415%,#a4ca37 37.415%), -moz-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%),-moz-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%);
+background: -o-linear-gradient(top, transparent 30%,#a4ca37 30%, #a4ca37 34%,transparent 34%,transparent 37.415%,#a4ca37 37.415%), -o-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%),-o-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%);
+background: -ms-linear-gradient(top, transparent 30%,#a4ca37 30%, #a4ca37 34%,transparent 34%,transparent 37.415%,#a4ca37 37.415%), -ms-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%),-ms-radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%);
+background: linear-gradient(top, transparent 30%,#a4ca37 30%, #a4ca37 34%,transparent 34%,transparent 37.415%,#a4ca37 37.415%), radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%),radial-gradient(center, ellipse cover, rgba(44, 44, 44, 0) 12%,#a4ca37 14%);
+background-repeat: no-repeat;
+background-position: 0,2% 0,98% 0;
+background-size: 100% 100%, 55% 31.927%, 55% 31.927%;
+}
+.droid::after {
+top: 0.7em;
+left: -0.408em;
+position: absolute;
+content: "";
+background: #a4ca37;
+height: 1.02em;
+width: 0.3401em;
+border-radius: 50% 50% 50% 50% / 18% 18% 18% 18%;
+box-shadow: 1.96em 0 0 0 #a4ca37,0.75em 0.8em 0 0 #a4ca37,1.25em 0.8em 0 0 #a4ca37;
+}
+
+.droid::before {
+top: -0.4em;
+left: 0.41em;
+position: absolute;
+content: "";
+height: 0.6em;
+width: 0.6em;
+border: 0.07em solid #a4ca37;
+border-top: none;
+border-right: none;
+-webkit-transform: rotate(-45deg);
+-moz-transform: rotate(-45deg);
+-o-transform: rotate(-45deg);
+-ms-transform: rotate(-45deg);
+transform: rotate(-45deg);
+border-radius: 0.01em;
+}
+
+.pin {
+  background-color: #aaa;
+  background-image: linear-gradient(left, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));
+  display: block;
+  height: 2em;
+  left: 50%;
+  margin: -1em -.05em;
+  position: absolute;
+  top: 50%;
+  width: .1em;
+}
+.pin:after {
+  background-color: skyBlue;
+  background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
+              inset .2em .2em .2em hsla(0,0%,100%,.2),
+              inset -.2em -.2em .2em hsla(0,0%,0%,.2),
+              1.5em 1.25em .25em hsla(0,0%,0%,.15);
+  content: '';
+  height: .8em;
+  left: -.35em;
+  position: absolute;
+  top: -.65em;
+  width: .8em;
+}
+.pin:before {
+  background-color: hsla(0,0%,0%,.1);
+  box-shadow: 0 0 .25em hsla(0,0%,0%,.1);
+  content: '';
+  height: 1.5em;
+  left: 0;
+  position: absolute;
+  top: .5em;
+  transform: rotate(57.5deg);
+  transform-origin: 50% 100%;
+  width: .1em;
+}
+
+
+
+.olympic-rings {
+  background-image: /* Blue ring */
+                    -webkit-radial-gradient(circle, transparent 45%, #fff 45%, #fff 50%, #0085c7 50%, #0085c7 65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Black ring */
+                    -webkit-radial-gradient(circle, transparent 45%, #fff 45%, #fff 50%, #000    50%, #000    65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Red ring */
+                    -webkit-radial-gradient(circle, transparent 45%, #fff 45%, #fff 50%, #df0024 50%, #df0024 65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Yellow ring */
+                    -webkit-radial-gradient(circle, transparent 45%, #fff 45%, #fff 50%, #f4c300 50%, #f4c300 65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Green ring */
+                    -webkit-radial-gradient(circle, transparent 45%, #fff 45%, #fff 50%, #009f3d 50%, #009f3d 65%, #fff 65%, #fff 70%, transparent 70%);
+  background-position: /* Blue ring */
+                       10% 25%,
+                       /* Black ring */
+                       50% 25%,
+                       /* Red ring */
+                       90% 25%,
+                       /* Yellow ring */
+                       30% 75%,
+                       /* Green ring */
+                       70% 75%;
+  background-repeat: no-repeat;
+  background-size: 170px 170px;
+  height: 300px;
+  left: 50%;
+  margin: -150px -300px;
+  position: absolute;
+  top: 50%;
+  width: 600px;
+}
+.olympic-rings:after {
+  background-image: /* Blue overlap */
+                    -webkit-radial-gradient(-50% 50%, circle, transparent 45%, #fff 45%, #fff 50%, #0085c7 50%, #0085c7 65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Black overlap */
+                    -webkit-radial-gradient(-50% 50%, circle, transparent 45%, #fff 45%, #fff 50%, #000    50%, #000    65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Yellow overlap */
+                    -webkit-radial-gradient(150% 50%, circle, transparent 45%, #fff 45%, #fff 50%, #f4c300 50%, #f4c300 65%, #fff 65%, #fff 70%, transparent 70%),
+                    -webkit-radial-gradient(50% 150%, circle, transparent 45%, #fff 45%, #fff 50%, #f4c300 50%, #f4c300 65%, #fff 65%, #fff 70%, transparent 70%),
+                    /* Green overlap */
+                    -webkit-radial-gradient(150% 50%, circle, transparent 45%, #fff 45%, #fff 50%, #009f3d 50%, #009f3d 65%, #fff 65%, #fff 70%, transparent 70%),
+                    -webkit-radial-gradient(50% 150%, circle, transparent 45%, #fff 45%, #fff 50%, #009f3d 50%, #009f3d 65%, #fff 65%, #fff 70%, transparent 70%);
+  background-position: /* Blue overlap */
+                       31.6% 35.5%,
+                       /* Black overlap */
+                       64.6% 35.5%,
+                       /* Yellow overlap */
+                       18.8% 65%,
+                       33.5% 30.4%,
+                       /* Green overlap */
+                       52% 65%,
+                       66.5% 30.4%;
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+
+	
+	</style>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools.js"></script>
+	
+	<script type="text/javascript">
+
+	window.addEvent('domready', function() {
+	/*
+		document.addEvent("keydown",function(event){
+			var key=event.key;
+			console.log('key='+key); 
+		});
+		$("test").addEvent("click",function(event){
+			var tx=$("test").get("text");
+			var ht=$("test").get("html");
+			var ti=$("test").get("title");
+			console.log('text='+tx); 
+			console.log('html='+ht); 
+			console.log('title='+ti); 
+		});
+	*/
+	});
+
+</script>
+ 
+	<!--[if IE]>
+		<link href=ie.css rel=stylesheet />
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+ 
+</head> 
+ 
+<body> 
+<label class="switch"></label>
+
+
+<div>
+	<div class="droid"></div>
+</div>
+<div>
+	<i class="pin"></i>
+</div>
+<div>
+	<div class="olympic-rings"></div>
+</div>
+</body>
+</html>

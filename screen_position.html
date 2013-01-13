@@ -26,13 +26,13 @@ function onLoad(){
 	window.onscroll = function (oEvent) {
 	  // called when the window is scrolled.
 	  var nVScroll = document.documentElement.scrollTop || document.body.scrollTop;
-	  var nVScroll1 = document.documentElement.scrollTop;
+	  
 	  var nVScroll2 = document.body.scrollTop;
 	  var ekran=screen.width+' x '+screen.height+'<br>'+screen.availWidth+' x '+screen.availHeight;
 	  
 		$('#test').innerHTML='';
 		$('#test').innerHTML+='<p>ekran= '+ekran+'</p>';
-		$('#test').innerHTML+='<p>nVScroll1= '+nVScroll1+'<br />nVScroll2= '+nVScroll2+'</p>';
+		$('#test').innerHTML+='<p>nVScroll2= '+nVScroll2+'</p>';
 		$('#test').innerHTML+='<p>pageYOffset= '+window.pageYOffset+'</p>';
 		$('#test').innerHTML+='<p>blok1= '+$('#blok1').style.width+'</p>';
 		$('#test').innerHTML+='<p>blok2= '+$('#blok2').style.width+'</p>';
