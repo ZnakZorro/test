@@ -50,70 +50,26 @@ function toDate(date){
 
 
 			//Your list of functions list in an array obj
-			var myarray = [
-			
-			function () {
-			  $('#asynch').append(toDate()+" some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append(toDate()+" some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append(toDate()+"some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append(toDate()+"some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append(toDate()+"some data inserted!<br/>");
-			},,
-
-			function () {
-			  $('#asynch').append(toDate()+"some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},,
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			},
-
-			function () {
-			  $('#asynch').append("some data inserted!<br/>");
-			}];
+		var myarray = [
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");},
+			function () {$('#asynch').append(toDate()+" some data inserted!<br/>");}
+		];
 
 
 
 			//call asych looper
-			asynchForeach(0,myarray, 250, function(){
+			asynchForeach(0,myarray, 1000, function(){
 			  //this is the function will be invoked after "myarray" has been complated
-			  $('#asynch').append("All data has been processed!<br/>");
+			  $('#asynch').append(toDate()+" All data has been processed!<br/>");
 			});
 		
 		
@@ -125,6 +81,7 @@ function toDate(date){
 	<![endif]--> 
 </head> 
 <body> 
+Demo async JS
 <div id="asynch"></div>
 </body>
 </html>
