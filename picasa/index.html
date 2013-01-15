@@ -1,0 +1,356 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>PICASA free for all</title>
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--link href='http://fonts.googleapis.com/css?family=Loved+by+the+King' rel='stylesheet' type='text/css'-->
+<style type="text/css"> 
+body {
+font-family: georgia, cursive;
+font-size: 0.88em; 
+margin:0 0.5%;
+padding:0;
+text-align:center;
+/*background: #052C46;*/
+background: #404040;
+color:#fff;
+}
+h1,h2,h3 {color:#fff; width:100%;margin:0.5em; font-size:1.2em;}
+h1 { font-size:1.5em;margin:0.5em; padding:0.5em;}
+a, a:link {color:#fff;}
+a:hover, a:active {color:gold;}
+
+#wrapper {text-align:center; width:99.5%;}
+#content {}
+#albums, #photos {margin:0 auto; padding:0.5%; text-align:center; float:left; clear:both; width:99%; background:#202020;}
+#albums div, #photos div {display:inline;  overflow:hidden;cursor:pointer; padding:1px; } 
+	#albums div img, #photos div img {display:inline; border:1px solid #fff; margin:1px;} 
+		.ikony_galeria {width:36px; height:36px;}
+		.ikony_album   {width:48px; height:48px;}
+#ekran  {width:100%; clear:both; margin:1em auto; text-align:center;  float:left; position:relative;}
+#photo {text-align:center; margin:0 auto; width:auto; height:auto; border:4px solid #ddd;}
+#navi {margin:0.25em; padding:0.25em;}
+#sprev,#snext  { height:28px; width:28px;}
+#splay,#spause { height:28px; width:48px;}
+#sprev,#snext{ background:transparent;  margin-top:10px; cursor:pointer;}
+#sprev{margin-right:80px;}
+#snext{margin-left:80px;}
+#splay:hover,#sprev:hover,#snext:hover,#spause:hover{opacity:0.5;}
+#spause {display:none;}
+#splay {display:inline;}
+
+#sprev, #snext {position:absolute; top:40%; opacity:0.75; height:5em;}
+#sprev {left:0.5%;}
+#snext {right:0.5%;}
+
+</style>
+
+<script type="text/javascript">
+//var rewrite=true;
+
+function los(liczba){return parseInt(Math.random()*liczba);}
+function get_uri_param( name ){
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )    return "";
+  else    return results[1];
+}
+function get_with_geometry(){
+	var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+	var _x=Math.round(y*(16/9));
+	var _x=Math.min(x,_x);	
+	var imgmaxW=(Math.floor(_x/160))*160;
+	if (imgmaxW>1200 && imgmaxW<1599) imgmaxW=1200;
+	var geometria={'x':x,'y':y,'w':imgmaxW};
+	return geometria;
+}
+
+	// config for picasa
+	imgmax = '1600';
+	var picasa='szczecinmojemiasto';
+	var icon_albums	= '36c';
+	var icon_photos	= '48c';
+	
+	// get params
+	var picasa_uri = get_uri_param('picasa');
+	if (picasa_uri) picasa=picasa_uri;
+	var album = get_uri_param('album');
+
+//var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+
+// globale
+var obrazy=[];
+var aktualny=0;
+var ostatni=0;
+//var poprzedni=0;
+SlideInterval=undefined;
+
+
+// DOM ready
+window.onload = function(){
+	if (album){
+		document.getElementById('albums').style.display='none';
+		var imgmax=get_with_geometry().w;
+		var urlPICASA='http://picasaweb.google.com/data/feed/base/user/' + picasa + '/albumid/' + album + '?alt=jsonc&hl=en_US&callback=viewPhotosList&thumbsize=' + icon_photos+'&imgmax='+imgmax;
+	} else {
+		document.getElementById('albums').style.display='block';
+		var urlPICASA='http://picasaweb.google.com/data/feed/base/user/' + picasa + '?category=album&alt=jsonc&callback=viewAlbumsList&access=public&thumbsize=' + icon_albums;
+	}
+	var script=document.createElement('SCRIPT');
+	script.type='text/javascript';
+	script.src=urlPICASA;
+	document.getElementsByTagName('head')[0].appendChild(script);
+	rysujStrzalki();
+	
+}
+
+
+function viewAlbumsList(req){
+ var ile=req.data.items.length;
+	var	html='';	
+		for (var i=0;i<ile;i++){
+			var self_link=req.data.items[i].selfLink;			
+			var alt_link=req.data.items[i].alternateLink;
+			var arr=self_link.split('/');
+			var arr=arr[arr.length-1].split('?');
+			var albumID=arr[0];			
+			var onklik='pokazAlbum(\''+self_link+'\');';
+			//if (rewrite) html+='<a href=./'+picasa+'/'+albumID+'>';
+			//else         
+				html+='<a href=./?picasa='+picasa+'&album='+albumID+'>';
+				html+='<div onClick="'+onklik+'" class="ikony_galeria">';
+				html+='<img src="'+req.data.items[i].media.thumbnails[0]+'" title="'+req.data.items[i].title+'" alt="'+req.data.items[i].title+'"/>';
+				html+='</div>';
+			html+='</a>';
+		}
+		document.getElementById('albums').innerHTML+=html;
+		pokazAlbum(req.data.items[0].selfLink);
+}
+
+
+function viewPhotosList(req){
+//var imgmax=get_with_geometry().w;
+ var ile=req.data.items.length;
+ ostatni=ile-1;
+	var picasa=get_uri_param('picasa');
+	var html='<h3 title="Powrót do: '+req.data.author+'"   onClick="history.back();" style="cursor:pointer;"><a href="./?picasa='+picasa+'"> '+req.data.title+' ...</a></h3>';
+	
+	obrazy=[];
+		for (var i=0;i<ile;i++){
+		var id='im'+i;
+			var onklik='pokazSlide(\''+req.data.items[i].media.image.url+'\',\''+req.data.items[i].media.image.width+'\',\''+req.data.items[i].media.image.height+'\',\''+req.data.items[i].title+'\',\''+id+'\');';					
+			html+='';
+				html+='<div id="'+id+'" onClick="'+onklik+'" class="ikony_album">';
+				html+='<img src="'+req.data.items[i].media.thumbnails[0]+'" title="'+req.data.items[i].title+'" alt="'+req.data.items[i].title+'"/>';
+				html+='</div>';
+			html+='';
+			obrazy[i]={	'title':req.data.items[i].title, 
+						'obraz':req.data.items[i].media.image.url, 
+						'ikona':req.data.items[i].media.thumbnails[0], 
+						'width':req.data.items[i].media.image.width, 
+						'height':req.data.items[i].media.image.height};
+		}		
+		document.getElementById('photos').innerHTML=html;
+		i=0;
+		pokazSlide(req.data.items[i].media.image.url,req.data.items[i].media.image.width,req.data.items[i].media.image.height,req.data.items[i].title,'im0',i);
+}
+
+
+function pokazAlbum(url_ALBUM){
+	//var imgmax=get_with_geometry().w;
+	url_ALBUM=url_ALBUM.replace('entry','feed');
+	var scriptA=document.createElement('SCRIPT');
+	scriptA.type='text/javascript';
+	var aplus='&callback=viewPhotosList&thumbsize='+icon_photos+'&imgmax='+imgmax;
+	scriptA.src=url_ALBUM+aplus;
+	document.getElementsByTagName('head')[0].appendChild(scriptA);
+}
+
+function pokazSlide(url,width,height,title,id,i){
+
+	var img_width=get_with_geometry().w;
+	var img_height=Math.round(height/(width/img_width));
+	if (img_width<img_height) {img_width=img_width/2; img_height=img_height/2;}
+	
+//console.log(width+' x '+height+' --- '+img_width+' / '+img_height);
+	document.getElementById('photo').style.width =img_width+'px';
+	document.getElementById('photo').style.height=img_height+'px';
+	document.getElementById('ramka').innerHTML='<img class="photo" id="slajd" src="'+url+'" width="'+img_width+'" height="'+img_height+'" title="'+title+'" alt="'+title+'"/>';
+	var j=i+1;
+	if (j>ostatni) j=0;
+	if (obrazy[j]) {
+		document.getElementById('photo').style.backgroundImage='url('+obrazy[j].obraz+')';
+		}
+	document.getElementById('photo').style.backgroundSize=width+'px '+height+'px';
+	aktualny=i;
+}
+
+
+
+// obsluga zdarzen
+function pokazPrev(){
+	aktualny--;
+	if (aktualny<=0) aktualny=ostatni;
+	pokazPrevNext(aktualny);
+}
+
+function pokazNext(){
+	if (aktualny==undefined)  aktualny=0;
+//document.getElementById('ret1').innerHTML+='aktualny='+aktualny+' | ';	
+	aktualny++;	
+	if (aktualny>ostatni) aktualny=0;
+	pokazPrevNext(aktualny);
+}
+
+function pokazPrevNext(i){
+//document.getElementById('ret1').innerHTML+='i='+i+'<br>';
+//for (var i=0;i<5;i++){document.getElementById('ret1').innerHTML+=obrazy[i].obraz+'<br>';}
+	pokazSlide(obrazy[i].obraz,obrazy[i].width,obrazy[i].height,obrazy[i].title,'im'+i,i);
+}
+
+function SlideShow(){
+	if (SlideInterval==undefined) {
+		SlideInterval=setInterval("pokazNext()",10000);
+		document.getElementById('splay').style.display ='none';
+		document.getElementById('spause').style.display ='inline';
+		document.getElementById('sprev').style.visibility ='hidden';
+		document.getElementById('snext').style.visibility ='hidden';
+		pokazNext();
+		}
+	else {
+		SlideInterval=clearInterval(SlideInterval);
+		document.getElementById('splay').style.display ='inline';
+		document.getElementById('spause').style.display ='none';
+		document.getElementById('sprev').style.visibility ='visible';
+		document.getElementById('snext').style.visibility ='visible';
+		}	
+	}
+
+// klawisze 
+function klawisze(event){
+	var code=event.keyCode;
+	if (event.keyCode) code = event.keyCode;
+	else if (event.which) code = event.which;
+	var character = String.fromCharCode(code);
+	if (code==32) SlideShow();
+	if (code==37) pokazPrev();
+	if (code==38) pokazPrev();
+	if (code==39) pokazNext();
+	if (code==40) pokazNext();
+};
+
+
+
+
+// rysowanie strzalek i tla
+function strzalka_Play(idiv){
+	canvas = document.getElementById(idiv);
+	var w=canvas.width;
+	var h=canvas.height;
+	if (canvas.getContext){
+		cxt = canvas.getContext('2d');
+		cxt.translate(w,0);
+		cxt.scale(-1,1);
+		strzalka(cxt,"#81A8B8",w,h);
+	}	
+}	
+
+function strzalka_Pauze(idiv){ 
+	canvas = document.getElementById(idiv);
+	var w=canvas.width;
+	var h=canvas.height;
+	if (canvas.getContext){
+		cxt = canvas.getContext('2d');
+		var w3=w/3;	
+			cxt.beginPath();
+			cxt.fillStyle = '#81A8B8';
+			cxt.rect(0, 0, w3, h);
+			cxt.fill();
+			cxt.rect(2*w3,0, w3, h);
+			cxt.fill();
+	}	
+}	
+
+
+// rysowanie strzalek i tla
+function strzalka(cxt,bg,w,h){
+		var w2=w/2;
+		var h2=h/2;
+		cxt.beginPath();
+		cxt.moveTo(0, h2);		
+		cxt.lineTo(w, 0);
+		cxt.lineTo(w, h);
+		cxt.lineTo(0, h2);
+		cxt.closePath();	
+		cxt.lineWidth =0;
+		cxt.strokeStyle = "#eeeeee";
+		cxt.fillStyle = bg;	
+		cxt.fill();
+		cxt.stroke();	
+}
+
+function rysujStrzalki(){
+// prev
+	canvas = document.getElementById('sprev');
+	var w=canvas.width;
+	var h=canvas.height;
+	if (canvas.getContext){
+		cxt = canvas.getContext('2d');
+		strzalka(cxt,"#E8F3F8",w,h);
+	}
+//next	
+	canvas = document.getElementById('snext');
+	var w=canvas.width;
+	var h=canvas.height;
+	if (canvas.getContext){
+		cxt = canvas.getContext('2d');
+		cxt.translate(w,0);
+		cxt.scale(-1,1);
+		strzalka(cxt,"#E8F3F8",w,h);
+	}
+//play
+	strzalka_Play('splay');
+	strzalka_Pauze('spause');
+} // end of strzalki	
+
+</script>
+</head>
+
+<body onKeyUp="klawisze(event);">
+<div id="wrapper">	
+
+<div id="ret1"    style="clear:both;">	</div>
+<div id="ret2"    style="clear:both;">	</div>
+
+<div id="content">	
+		
+	<div id="albums" title="Wszystkie albumy">	</div>
+	
+		<div id="ekran">
+			<div id="photo"><div id="ramka"></div></div>
+			<div id="navi">
+				<a href="#"><canvas onClick="pokazPrev();" id="sprev" width="28"  height="28" title="Prev "></canvas></a>
+				<a href="#"><canvas onClick="SlideShow();" id="splay" width="48"  height="28" title="Play "></canvas></a>
+				<a href="#"><canvas onClick="SlideShow();" id="spause" width="48" height="28" title="Pause"></canvas></a>
+				<a href="#"><canvas onClick="pokazNext();" id="snext" width="28"  height="28" title="Next "></canvas></a>
+			</div>
+			
+		</div>
+
+	<div id="photos" title="Fotografie z albumu">	</div>
+
+</div>
+
+</div>
+
+	<canvas id="bak" name="bak" width="180" height="180" style="display:none;"></canvas>
+	<img src="" id="zapas" style="display:none;" />
+</body>
+</html>
+

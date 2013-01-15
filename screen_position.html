@@ -38,7 +38,18 @@ function onLoad(){
 		$('#test').innerHTML+='<p>blok2= '+$('#blok2').style.width+'</p>';
 		
 		}
+		
+var width = window.innerWidth || document.documentElement.clientWidth ||document.body.clientWidth;
+var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+
+$('#test').innerHTML='<p>'+width+'x'+height+'</p><p>'+x+'x'+y+'</p>';
+		
+		
 }
+
+
 
 
 </script>
