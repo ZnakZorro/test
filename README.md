@@ -1,0 +1,4 @@
+﻿test	
+======
+
+Test różnych komponetów
