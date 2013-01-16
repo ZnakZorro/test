@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Share test position elem</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<link rel="stylesheet" href="css/bootstrap.mi.css">
+<style>	
+#test {background:#ffe; position:fixed; top:10px; right:3px; border:1px silver solid; padding:4px;}
+</style>
+<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="share.js"></script>
+
+<script>
+var $=function(id){var prefix=id[0];var iid=id.slice(1,id.length);switch (prefix){case '#':return document.getElementById(iid);break;case '.':return document.getElementsByClassName(iid);break;default:return document.getElementsByTagName(id);}}
+
+function onLoad(){	
+       document.addEventListener("deviceready", onDeviceReady, false);
+		try {if (device.uuid) {} }
+		catch(err) {onDeviceReady();}
+	
+	}
+
+    function onDeviceReady() {
+		$('#test').innerHTML='start';	
+	}
+	
+function sss(){
+	window.plugins.share.show({
+		subject: 'I like turtles',
+		text: 'http://www.mndaily.com'},
+		function() {}, // Success function
+		function() {alert('Share failed')} // Failure function
+	);
+}
+
+</script>
+</head>
+
+
+<body onLoad="onLoad()">
+
+<button onClick='sss()' class='btn' >Share</button>
+
+<div id="test">00000000000000000000000000000</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
