@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Charts add column</title>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  
+  
+<body class="docs framebox_body">
+
+
+<form>
+  <input id="example4-b1" type="button" value="Add column and shuffle values"></input>
+  <input id="example4-b2" type="button" value="Remove column and shuffle values"></input>
+</form>
+<div id="example4-visualization" style="border:1px solid gray;"></div>
+
+<script type="text/javascript">
+
+function drawExample4() {
+  var options = {
+    width: 640,
+    height: 400,
+    vAxis: {minValue:0, maxValue:1000},
+    animation: {
+      duration: 1000,
+      easing: 'out'
+    }
+  };
+
+  var chart = new google.visualization.LineChart(
+      document.getElementById('example4-visualization'));
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'x');
+  data.addColumn('number', 'Aa');
+  data.addColumn('number', 'Bb');
+  data.addColumn('number', 'Cc');
+  data.addRow(['2010', 123, 400, 600]);
+  data.addRow(['2011', 17, 200, 500]);
+  data.addRow(['2012', 170, 200, 50]);
+  var addButton = document.getElementById('example4-b1');
+  var removeButton = document.getElementById('example4-b2');
+  function drawChart() {
+    // Disabling the buttons while the chart is drawing.
+    addButton.disabled = true;
+    removeButton.disabled = true;
+    google.visualization.events.addListener(chart, 'ready',
+        function() {
+          // Enabling only relevant buttons.
+          addButton.disabled = (data.getNumberOfColumns() - 1) >= chars.length;
+          removeButton.disabled = (data.getNumberOfColumns() - 1) < 2;
+        });
+    chart.draw(data, options);
+  }
+  function shuffleAndDrawChart() {
+    for (var i = 0; i < data.getNumberOfRows(); ++i) {
+      for (var j = 1; j < data.getNumberOfColumns(); ++j) {
+        var num = Math.floor(Math.random() * 1000);
+        data.setValue(i, j, num);
+      }
+    }
+    drawChart();
+  }
+  
+  addButton.onclick = function() {
+    data.addColumn('number', chars[data.getNumberOfColumns() - 1]);
+    shuffleAndDrawChart();
+  }
+  
+  removeButton.onclick = function() {
+    data.removeColumn(data.getNumberOfColumns() - 1);
+    shuffleAndDrawChart();
+  }
+  drawChart();
+}
+
+google.load('visualization', '1.1', {packages: ['corechart']});
+google.setOnLoadCallback(drawExample4);
+
+</script>
+
+</body>
+</html>

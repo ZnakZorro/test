@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Developers</title>
+    <link rel="stylesheet" type="text/css" href="screen.css" />
+    <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script id="jqueryui" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" defer async></script>
+    <script src="http://www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="docs framebox_body">
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<form>
+  <input id="example4-b1" type="button" value="Add column and shuffle values"></input>
+  <input id="example4-b2" type="button" value="Remove column and shuffle values"></input>
+</form>
+<div id="example4-visualization"></div>
+
+<script type="text/javascript">
+
+function drawExample4() {
+  var options = {
+    width: 640,
+    height: 400,
+    vAxis: {minValue:0, maxValue:1000},
+    animation: {
+      duration: 1000,
+      easing: 'out'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(
+      document.getElementById('example4-visualization'));
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'x');
+  data.addColumn('number', 'A');
+  data.addColumn('number', 'B');
+  data.addRow(['A', 123, 40]);
+  data.addRow(['B', 17, 20]);
+  var addButton = document.getElementById('example4-b1');
+  var removeButton = document.getElementById('example4-b2');
+  function drawChart() {
+    // Disabling the buttons while the chart is drawing.
+    addButton.disabled = true;
+    removeButton.disabled = true;
+    google.visualization.events.addListener(chart, 'ready',
+        function() {
+          // Enabling only relevant buttons.
+          addButton.disabled = (data.getNumberOfColumns() - 1) >= chars.length;
+          removeButton.disabled = (data.getNumberOfColumns() - 1) < 2;
+        });
+    chart.draw(data, options);
+  }
+  function shuffleAndDrawChart() {
+    for (var i = 0; i < data.getNumberOfRows(); ++i) {
+      for (var j = 1; j < data.getNumberOfColumns(); ++j) {
+        var num = Math.floor(Math.random() * 1000);
+        data.setValue(i, j, num);
+      }
+    }
+    drawChart();
+  }
+  addButton.onclick = function() {
+    data.addColumn('number', chars[data.getNumberOfColumns() - 1]);
+    shuffleAndDrawChart();
+  }
+  removeButton.onclick = function() {
+    data.removeColumn(data.getNumberOfColumns() - 1);
+    shuffleAndDrawChart();
+  }
+  drawChart();
+}
+
+google.load('visualization', '1.1', {packages: ['corechart']});
+google.setOnLoadCallback(drawExample4);
+
+</script>
+
+</body>
+</html>
