@@ -1,0 +1,80 @@
+<html lang=pl> 
+<head> 
+<meta charset=UTF-8> 
+<title>Canvas logo draw</title> 
+<meta http-equiv="Content-Language" content="pl"/> 
+<style type="text/css"> 
+body{font:normal 0.85em Verdana; margin:0.25em; padding:0.25em;}
+a   {text-decoration:none;}
+</style>
+
+
+<script type="text/javascript">
+function onLoad(){
+	var canvas = document.getElementById('logo-canvas');
+	if (canvas.getContext) {
+	  var ctx = canvas.getContext("2d");
+
+	  // Draw black oval
+	  ctx.save();
+	  ctx.fillStyle = "rgba(0, 0, 0, 1)";
+	  ctx.scale(1.75, 1);
+	  ctx.beginPath();
+	  ctx.arc(35, 51, 30, 0, Math.PI*2, false);
+	  ctx.fill();
+	  ctx.closePath();
+	  ctx.restore();
+
+	  // Draw white oval inside black
+	  ctx.save();
+	  ctx.fillStyle = "rgba(255, 255, 255, 1)";
+	  ctx.scale(1.75, 1);
+	  ctx.beginPath();
+	  ctx.arc(42, 47, 17, 0, Math.PI*2, false);
+	  ctx.fill();
+	  ctx.closePath();
+	  ctx.restore();
+
+	  // Draw orange oval
+	  ctx.save();
+	  ctx.fillStyle = "rgba(237, 128, 39, 1)";
+	  ctx.scale(1.75, 1);
+	  ctx.beginPath();
+	  ctx.arc(92, 37, 30, 0, Math.PI*2, false);
+	  ctx.fill();
+	  ctx.closePath();
+	  ctx.restore();
+
+	  // Draw white oval inside orange
+	  ctx.save();
+	  ctx.fillStyle = "rgba(255, 255, 255, 1)";
+	  ctx.scale(1.75, 1);
+	  ctx.beginPath();
+	  ctx.arc(82, 40, 17, 0, Math.PI*2, false);
+	  ctx.fill();
+	  ctx.closePath();
+	  ctx.restore();
+	}
+}	
+</script>
+	<!--[if IE]>
+		<link href=ie.css rel=stylesheet />
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+</head> 
+<body onLoad="onLoad()"> 
+<canvas id="logo-canvas" width="250" height="100"></canvas>
+
+<hr />
+
+<svg>
+    <ellipse cx="50" cy="51" rx="50" ry="30" fill="rgb(0,0,0)"/>
+    <ellipse cx="145" cy="37" rx="50" ry="30" fill="rgb(237, 128, 39)"/>
+    <ellipse cx="60" cy="47" rx="30" ry="17" fill="rgb(255, 255, 255)"/>
+    <ellipse cx="132" cy="40" rx="30" ry="17" fill="rgb(255, 255, 255)"/>
+</svg>
+
+
+	
+</body>
+</html>
